@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.util.List;
 
-//@WebServlet(name = "ProductsList", urlPatterns = "/products")
+@WebServlet(name = "ProductsList", urlPatterns = "/products")
 public class ProductsServlet implements Servlet {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductsServlet.class);
@@ -28,12 +28,17 @@ public class ProductsServlet implements Servlet {
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         logger.info("New request to server");
 
+        servletResponse.setContentType("text/html");
+
         List<Product> productList = ProductsGenerator.generateList(Integer.parseInt(servletRequest.getParameter("size")));
+        servletResponse.getWriter().println("<html><body>");
 
         for (Product prod:
-             productList) {
+                productList) {
             servletResponse.getWriter().println("<h3>" + prod.toString() + "</h3>");
         }
+
+        servletResponse.getWriter().println("</body><html>");
 
     }
 

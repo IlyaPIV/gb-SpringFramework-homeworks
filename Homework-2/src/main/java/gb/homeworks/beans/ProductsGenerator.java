@@ -1,12 +1,17 @@
 package gb.homeworks.beans;
 
+import gb.homeworks.MyConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Component
+@Service
 public class ProductsGenerator {
     private static final Random rnd = new Random();
 
@@ -21,6 +26,12 @@ public class ProductsGenerator {
 
             float price = Math.round(rnd.nextFloat(1000f) * scale) * 1f / scale;
 
+//            ApplicationContext appContext = new AnnotationConfigApplicationContext(MyConfig.class);
+//            Product prod = appContext.getBean(Product.class);
+//            prod.setId(id);
+//            prod.setCost(price);
+//            prod.setTitle(name);
+            // такой вариант проще и быстрее
             list.add(new Product(id, name, price));
         }
 

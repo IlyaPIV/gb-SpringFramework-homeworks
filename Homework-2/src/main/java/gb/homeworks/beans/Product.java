@@ -1,9 +1,9 @@
 package gb.homeworks.beans;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @Scope("prototype")
 public class Product {
     private int id;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class ProductsRepository {
@@ -14,10 +15,10 @@ public class ProductsRepository {
     @Autowired
     private ProductsGenerator prodGen;
 
-    private Map<Integer, Product> priceList;
+    private final ConcurrentHashMap<Integer, Product> priceList;
 
     public ProductsRepository() {
-        priceList = new HashMap<>();
+        priceList = new ConcurrentHashMap<>();
     }
 
     public void initProductList(int size) {

@@ -1,6 +1,9 @@
 package gb.homeworks.products;
 
+import gb.homeworks.customers.Customer;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -13,6 +16,12 @@ public class Product {
 
     @Column(name = "cost")
     private float cost;
+
+    @ManyToMany
+    @JoinTable(name = "customers_products",
+                joinColumns = @JoinColumn(name = "product_id"),
+                inverseJoinColumns = @JoinColumn(name ="customer_id"))
+    private Set<Customer> customers;
 
 
     public Product() {

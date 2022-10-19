@@ -1,24 +1,40 @@
 package gb.homeworks;
 
+import gb.homeworks.customers.Customer;
+import gb.homeworks.customers.CustomerDAO;
+import gb.homeworks.customers.CustomerDaoImpl;
 import gb.homeworks.products.Product;
 import gb.homeworks.products.ProductDAO;
 import gb.homeworks.products.ProductDaoImpl;
-import org.hibernate.Session;
 
 import java.util.List;
 
 public class Homework {
 
     private final ProductDAO productDAO = new ProductDaoImpl();
+    private final CustomerDAO customerDAO = new CustomerDaoImpl();
+
+
 
     public void checkTasks(){
 
+        //homeworkFifth();
+        homeworkSix();
+
+    }
+
+
+    public void homeworkFifth(){
         createProduct();
         findProduct();
         findAllProducts();
         updateProduct();
         deleteProduct();
+    }
 
+    public void homeworkSix(){
+        findAllCustomers();
+        findAllProducts();
     }
 
     public void createProduct(){
@@ -63,6 +79,13 @@ public class Homework {
         productDAO.deleteById(id);
         Product product = productDAO.findById(id);
         System.out.println("result searching item with id = 2: " + product);
+    }
+
+    public void findAllCustomers(){
+        System.out.println("======== testing FIND ALL CUSTOMERS ========");
+        List<Customer> customerList = customerDAO.findAll();
+        System.out.println("size of table: " + customerList.size());
+        customerList.forEach(System.out::println);
     }
 
 }
